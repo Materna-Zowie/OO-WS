@@ -42,7 +42,7 @@ extensions:
       SUCCESS:
         ec711145-4b34-7a5c-5ef7-f43b76ba742d:
           x: 440
-          'y': 120
+          'y': 200
       FAILURE_UNAUTHORIZED:
         e22294c4-8360-1ac3-e66e-f7e134489344:
           x: 440
