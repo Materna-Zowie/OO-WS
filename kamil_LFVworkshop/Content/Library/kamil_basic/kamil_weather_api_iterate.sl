@@ -4,6 +4,7 @@ flow:
   inputs:
     - cities_array: '[Stockholm,Bratislava,Berlin]'
     - temperatures_array: '[]'
+    - temperatures_object: '{}'
   workflow:
     - array_iterator:
         do:
@@ -23,15 +24,16 @@ flow:
           - current_temperature: '${temperature}'
         navigate:
           - FAILURE: on_failure
-          - SUCCESS: add_object_into_json_array
+          - SUCCESS: add_json_property_to_object
           - UNAUTHORIZED: FAILURE_UNAUTHORIZED
-    - add_object_into_json_array:
+    - add_json_property_to_object:
         do:
-          io.cloudslang.base.json.add_object_into_json_array:
-            - json_array: '${temperatures_array}'
-            - json_object: "${'{\"' + current_city + '\":\"' + current_temperature + '\"}'}"
+          io.cloudslang.base.json.add_json_property_to_object:
+            - json_object: '${temperatures_object}'
+            - key: '${current_city}'
+            - value: '${current_temperature}'
         publish:
-          - temperatures_array: '${return_result}'
+          - temperatures_object: '${return_result}'
         navigate:
           - SUCCESS: array_iterator
           - FAILURE: on_failure
@@ -58,14 +60,14 @@ extensions:
           35e1cbeb-098a-1b5f-e63c-96b7de62dc5b:
             targetId: 5bc77810-7f98-82e3-9a57-857d4c87bd68
             port: UNAUTHORIZED
-      add_object_into_json_array:
+      add_json_property_to_object:
         x: 560
         'y': 200
         navigate:
-          745543b3-37f6-b88f-4acf-06748973808c:
+          5f15c75f-f795-f1e8-cc38-4a4a788b78a3:
             vertices:
               - x: 360
-                'y': 120
+                'y': 80
             targetId: array_iterator
             port: SUCCESS
     results:
