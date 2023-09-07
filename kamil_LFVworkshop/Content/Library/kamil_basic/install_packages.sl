@@ -1,11 +1,18 @@
+########################################################################################################################
+#!!
+#! @input packages_list: comma separated list of modules/packages you want to install
+#!!#
+########################################################################################################################
 namespace: kamil_basic
 flow:
   name: install_packages
+  inputs:
+    - packages_list: 'numpy,pandas'
   workflow:
     - install_package:
         do:
           kamil_basic.install_package:
-            - packages_list: 'numpy,pandas'
+            - packages_list: '${packages_list}'
         navigate:
           - SUCCESS: SUCCESS
   results:

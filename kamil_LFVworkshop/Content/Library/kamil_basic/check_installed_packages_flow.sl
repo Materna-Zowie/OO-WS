@@ -5,8 +5,12 @@ flow:
     - check_installed_packages:
         do:
           kamil_basic.check_installed_packages: []
+        publish:
+          - installed_modules
         navigate:
           - SUCCESS: SUCCESS
+  outputs:
+    - installed_modules: '${installed_modules}'
   results:
     - SUCCESS
 extensions:
