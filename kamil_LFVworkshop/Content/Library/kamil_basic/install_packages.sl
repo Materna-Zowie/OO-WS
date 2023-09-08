@@ -7,7 +7,7 @@ namespace: kamil_basic
 flow:
   name: install_packages
   inputs:
-    - packages_list: 'numpy,pandas'
+    - packages_list: beautifulsoup4
   workflow:
     - install_package:
         do:

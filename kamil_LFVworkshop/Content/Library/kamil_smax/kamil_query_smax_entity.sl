@@ -47,10 +47,15 @@ flow:
             - entity_type: '${entity_type}'
             - query: '${query}'
             - fields: '${fields}'
+        publish:
+          - return_result
         navigate:
           - FAILURE: on_failure
           - SUCCESS: SUCCESS
           - NO_RESULTS: NO_RESULTS
+  outputs:
+    - return_result: '${return_result}'
+    - sso_token: '${sso_token}'
   results:
     - FAILURE
     - SUCCESS
